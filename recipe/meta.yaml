@@ -23,7 +23,7 @@ source:
     patches:
       - patches/unix-local-repository.patch  # [unix]
       - patches/win-local-repository.patch  # [win]
-      - patches/win-pass-antrun-test-error.patch  # [win]
+      # - patches/win-pass-antrun-test-error.patch  # [win]
 
 build:
   number: 0
