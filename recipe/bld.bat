@@ -105,8 +105,13 @@ set "_BUILD_DIR=%~2
 mkdir %_BUILD_DIR%
 cd %_BUILD_DIR%
   xcopy /E %_CLOJURE_SRC%\* . > nul
-  call powershell -Command "(Get-Content pom.xml) -replace '<ant target=\"test\" />', '<ant target=\"test\" failonerror=\"false\" />' | Set-Content pom.xml"
-  call mvn package -DskipTests
+
+  :: call powershell -Command "(Get-Content pom.xml) -replace '<ant target=\"test\" />', '<ant target=\"test\" failonerror=\"false\" />' | Set-Content pom.xml"
+  for /f "tokens=*" %%i in ('where bash') do set "BASH_PATH=%%i"
+  for %%i in ("%BASH_PATH%") do set "BASH_DIR=%%~dpi"
+  set "PATH=%BASH_DIR%;%PATH%"
+
+  call mvn -X package -DskipTests
   if errorlevel 1 exit 1
   dir .
   call mvn install:install-file -Dfile="target/clojure-%PKG_SRC_VERSION%.jar" -DgroupId=org.clojure -DartifactId=clojure -Dversion="%PKG_SRC_VERSION%" -Dpackaging=jar
