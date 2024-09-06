@@ -6,7 +6,7 @@
 :: 4. Build clojure-tools from source: This packages the clojure.jar into an installable/callable Module
 :: 5. Install clojure-tools Module
 
-@echo off
+:: @echo off
 setlocal EnableDelayedExpansion
 
 call :extract_licenses
