@@ -107,7 +107,7 @@ cd %_BUILD_DIR%
   dir %_CLOJURE_SRC%
   xcopy /E %_CLOJURE_SRC%\* . > nul
   dir .
-  call mvn package -DskipTests
+  call mvn -Ptest-no-direct package -DskipTests
   if errorlevel 1 exit 1
   dir .
   call mvn install:install-file -Dfile="target/clojure-%PKG_SRC_VERSION%.jar" -DgroupId=org.clojure -DartifactId=clojure -Dversion="%PKG_SRC_VERSION%" -Dpackaging=jar
