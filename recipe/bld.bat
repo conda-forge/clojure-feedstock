@@ -109,7 +109,8 @@ cd %_BUILD_DIR%
   dir .
   call mvn package -DskipTests
   if errorlevel 1 exit 1
-  call mvn -fn install:install-file -Dfile="target/clojure-%PKG_SRC_VERSION%.jar" -DgroupId=org.clojure -DartifactId=clojure -Dversion="%PKG_SRC_VERSION%" -Dpackaging=jar
+  dir .
+  call mvn install:install-file -Dfile="target/clojure-%PKG_SRC_VERSION%.jar" -DgroupId=org.clojure -DartifactId=clojure -Dversion="%PKG_SRC_VERSION%" -Dpackaging=jar
   if errorlevel 1 exit 1
 cd %SRC_DIR%
 goto :EOF
