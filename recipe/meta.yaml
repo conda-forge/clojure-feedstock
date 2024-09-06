@@ -31,7 +31,6 @@ build:
 
 requirements:
   build:
-    - bash  # [win]
     - maven
     - openjdk
   run:
