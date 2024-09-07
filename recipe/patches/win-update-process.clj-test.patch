@@ -1,0 +1,24 @@
+--- test/clojure/test_clojure/java/process.clj    2024-05-01 13:10:35.000000000 -0500
++++ test/clojure/test_clojure/java/process.clj    2024-06-13 21:11:11.017145256 -0500
+@@ -16,9 +16,18 @@
+   ;; capture to stdout and return string
+-  (is (not (str/blank? (p/exec "bash" "-c" "ls"))))
++  (let [result (p/exec "bash" "-c" "ls")]
++    (println "Command: bash -c 'ls'")
++    (println "Result:" result)
++    (is (not (str/blank? result))))
+
+   ;; print to stderr, capture nil
+-  (is (str/blank? (p/exec "bash" "-c" "ls >&2")))
++  (let [result (p/exec "bash" "-c" "ls >&2")]
++    (println "Command: bash -c 'ls >&2'")
++    (println "Result:" result)
++    (is (str/blank? result)))
+
+   ;; redirect, then capture to string
+-  (is (not (str/blank? (p/exec {:err :stdout} "bash" "-c" "ls >&2")))))
++  (let [result (p/exec {:err :stdout} "bash" "-c" "ls >&2")]
++    (println "Command: bash -c 'ls >&2' with {:err :stdout}")
++    (println "Result:" result)
++    (is (not (str/blank? result)))))
+
