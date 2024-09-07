@@ -17,13 +17,14 @@ source:
   - folder: clojure-src
     url: https://github.com/clojure/clojure/archive/refs/tags/clojure-{{ src_version }}.tar.gz
     sha256: 737b2f92dd2d5f1572efb6dc5f45bb52c858f1843c4397c472b4589a75b10992
+    patches:
+      - patches/win-update-process.clj-test.patch  # [win]
   - folder: clojure-tools-src
     url: https://github.com/clojure/brew-install/archive/refs/tags/{{ version }}.tar.gz
     sha256: 28f461f45ea13112feed3a2cc06ac793287e77af1133ee07c32c16740c171f14
     patches:
       - patches/unix-local-repository.patch  # [unix]
       - patches/win-local-repository.patch  # [win]
-      - patches/win-update-process.clj-test.patch  # [win]
 
 build:
   number: 0
