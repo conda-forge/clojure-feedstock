@@ -1,15 +1,11 @@
 --- test/clojure/test_clojure/java/process.clj    2024-05-01 13:10:35.000000000 -0500
 +++ test/clojure/test_clojure/java/process.clj    2024-06-13 21:11:11.017145256 -0500
-@@ -16,9 +16,9 @@
-   ;; capture to stdout and return string
+@@ -17,1 +17,1 @@
 -  (is (not (str/blank? (p/exec "bash" "-c" "ls"))))
 +  (is (not (str/blank? (p/exec "cmd.exe" "/c" "dir"))))
-
-   ;; print to stderr, capture nil
+@@ -20,1 +20,1 @@
 -  (is (str/blank? (p/exec "bash" "-c" "ls >&2")))
 +  (is (str/blank? (p/exec "cmd.exe" "/c" "dir 1>&2")))
-
-   ;; redirect, then capture to string
+@@ -23,1 +23,1 @@
 -  (is (not (str/blank? (p/exec {:err :stdout} "bash" "-c" "ls >&2")))))
 +  (is (not (str/blank? (p/exec {:err :stdout} "cmd.exe" "/c" "dir 1>&2")))))
-

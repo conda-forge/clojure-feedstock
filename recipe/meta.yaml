@@ -17,8 +17,8 @@ source:
   - folder: clojure-src
     url: https://github.com/clojure/clojure/archive/refs/tags/clojure-{{ src_version }}.tar.gz
     sha256: 737b2f92dd2d5f1572efb6dc5f45bb52c858f1843c4397c472b4589a75b10992
-    # patches:
-    #   - patches/win-update-process.clj-test.patch  # [win]
+    patches:
+      - patches/win-update-process.clj-test.patch  # [win]
   - folder: clojure-tools-src
     url: https://github.com/clojure/brew-install/archive/refs/tags/{{ version }}.tar.gz
     sha256: 359befc5fe71deff817537327d9802b00f1190c29f6f354378617632580883fb
