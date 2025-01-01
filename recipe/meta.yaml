@@ -1,5 +1,5 @@
 {% set name = "clojure" %}
-{% set version = "1.12.0.1488" %}
+{% set version = "1.12.0.1495" %}
 
 {% set tools_build = version.split('.')[-1] %}
 {% set src_version = version.split('.')[:3] | join('.') %}
@@ -11,9 +11,9 @@ package:
 source:
   - folder: clojure-tools
     url: https://github.com/clojure/brew-install/releases/download/{{ version }}/clojure-tools-{{ version }}.tar.gz  # [unix]
-    sha256: bc19be0010bef0421c26fd3bec7bc3bca08c192828d59a151845422dc4420742  # [unix]
+    sha256: 18cc13f87c74ec4f177bd83c4416d9ec2bb9142860db06055af7598e1b82949c  # [unix]
     url: https://github.com/clojure/brew-install/releases/download/{{ version }}/clojure-tools.zip  # [win]
-    sha256: 4ac32935963098e137db703cae9523041a911fa72b419386423a297e4851af29  # [win]
+    sha256: 7facf37b15002c07ed3de73a6b68593d5c3d2f579379f9220803367458fad707  # [win]
   - folder: clojure-src
     url: https://github.com/clojure/clojure/archive/refs/tags/clojure-{{ src_version }}.tar.gz
     sha256: 737b2f92dd2d5f1572efb6dc5f45bb52c858f1843c4397c472b4589a75b10992
@@ -21,7 +21,7 @@ source:
       - patches/win-update-process.clj-test.patch  # [win]
   - folder: clojure-tools-src
     url: https://github.com/clojure/brew-install/archive/refs/tags/{{ version }}.tar.gz
-    sha256: 9ea7d25968240705cc7dcec643077e179e16e720d61c66e38eb16df6f90008c9
+    sha256: 359befc5fe71deff817537327d9802b00f1190c29f6f354378617632580883fb
     patches:
       - patches/unix-local-repository.patch  # [unix]
       - patches/win-local-repository.patch  # [win]
