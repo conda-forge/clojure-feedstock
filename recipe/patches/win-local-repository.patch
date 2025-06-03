@@ -8,6 +8,6 @@
   :aliases
 @@ -11,3 +14,3 @@
    :build
--  {:deps {io.github.clojure/tools.build {:git/tag "v0.10.6" :git/sha "52cf7d6"}}
-+  {:deps {io.github.clojure/tools.build {:mvn/version "0.10.6"}}
+-  {:deps {io.github.clojure/tools.build {:git/tag "v0.10.9" :git/sha "e405aac"}}
++  {:deps {io.github.clojure/tools.build {:mvn/version "0.10.9"}}
     :paths ["script"]
