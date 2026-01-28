@@ -126,6 +126,9 @@ set "_BUILD_DIR=%~2"
 mkdir %_BUILD_DIR%
 cd %_BUILD_DIR%
   xcopy /E %_CLOJURE_TOOLS_SRC%\* . > nul
+  :: Modify deps.edn to use local maven repository instead of git dependency                                                                          
+  powershell -ExecutionPolicy Bypass -File %RECIPE_DIR%\fix-deps-edn.ps1                                                                                                                 
+                                                                                                                                                      
   powershell Import-Module ClojureTools
   powershell -Command "ClojureTools\clojure -T:build release" > nul
   if errorlevel 1 exit 1
