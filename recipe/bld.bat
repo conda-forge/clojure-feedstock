@@ -126,6 +126,13 @@ set "_BUILD_DIR=%~2"
 mkdir %_BUILD_DIR%
 cd %_BUILD_DIR%
   xcopy /E %_CLOJURE_TOOLS_SRC%\* . > nul
+  :: Modify deps.edn to use local maven repository instead of git dependency                                                                          
+  powershell -Command ^                                                                                                                               
+    "$content = Get-Content 'deps.edn' -Raw; ^                                                                                                        
+     $content = $content -replace ':git/tag', ':mvn/version'; ^                                        
+     $content = $content -replace ' :git/sha +\"[a-f0-9]+\"', ''; ^                                        
+     Set-Content 'deps.edn' $content"                                                                                                                 
+                                                                                                                                                      
   powershell Import-Module ClojureTools
   powershell -Command "ClojureTools\clojure -T:build release" > nul
   if errorlevel 1 exit 1
