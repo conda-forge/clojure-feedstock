@@ -65,7 +65,10 @@ build_clojure_from_source() {
   cd "${_build_dir}"
     cp -r "${_clojure_src}"/* .
     mvn -Dmaven.test.skip=true package > _clojure-build.log 2>&1
-    mvn install:install-file -Dfile=target/clojure-"${PKG_SRC_VERSION}".jar -DgroupId=org.clojure -DartifactId=clojure -Dversion="${PKG_SRC_VERSION}" -Dpackaging=jar > _clojure-maven-install.log 2>&1
+    sleep 3
+    find target/classes -name '*.class' -exec touch {} +
+    jar uf target/clojure-"${PKG_SRC_VERSION}".jar -C target/classes .
+    mvn install:install-file -Dfile=target/clojure-"${PKG_SRC_VERSION}".jar -DgroupId=org.clojure -DartifactId=clojure -Dversion="${PKG_SRC_VERSION}" -Dpackaging=jar -DpomFile=pom.xml > _clojure-maven-install.log 2>&1
 cd "$current_dir"
 }
 
@@ -83,7 +86,7 @@ build_clojure_from_tools() {
     cp -r "${_clojure_tools_src}"/* .
 
     export VERSION="${PKG_SRC_VERSION}"
-    "${SRC_DIR}"/_conda-bootstrapped/bin/clojure -T:build release > _clojure-tools-build.log 2>&1
+    "${SRC_DIR}"/_conda-bootstrapped/bin/clojure -T:build release > _clojure-tools-build.log 2>&1 || { cat _clojure-tools-build.log; exit 1; }
   cd "$current_dir"
 }
 
